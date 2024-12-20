@@ -2,7 +2,7 @@ pipeline {
     agent any
 
         environment {
-            DOCKER_IMAGE = 'my-node-docker-test/my-node-docker-test:latest'
+            DOCKER_IMAGE = 'my-node-docker-test'
             DOCKER_CREDENTIALS = 'dockerhub-credentials'
             GIT_REPO = 'https://github.com/prtamil/my-node-docker-test.git'
         }
@@ -18,7 +18,7 @@ pipeline {
             steps {
                 script {
                     // Build the Docker image using the Docker Pipeline plugin
-                    docker.build("${DOCKER_IMAGE}", ".")
+                    docker.build("${DOCKER_IMAGE}:dev${BUILD_NUMBER}", ".")
                 }
             }
         }
